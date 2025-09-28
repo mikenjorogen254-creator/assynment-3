@@ -1,0 +1,61 @@
+public class Main {
+    // simple circular queue as a static inner class so filename can be Main.java
+    static class CircularQueueSimple {
+        int[] arr;
+        int front, rear, size, capacity;
+
+        CircularQueueSimple(int n) {
+            capacity = n;
+            arr = new int[n];
+            front = 0;
+            rear = -1;
+            size = 0;
+        }
+
+        void enqueue(int x) {
+            if (size == capacity) {
+                System.out.println("Queue is full");
+                return;
+            }
+            rear = (rear + 1) % capacity;
+            arr[rear] = x;
+            size++;
+        }
+
+        void dequeue() {
+            if (size == 0) {
+                System.out.println("Queue is empty");
+                return;
+            }
+            System.out.println("Removed: " + arr[front]);
+            front = (front + 1) % capacity;
+            size--;
+        }
+
+        void display() {
+            if (size == 0) {
+                System.out.println("Queue is empty");
+                return;
+            }
+            System.out.print("Queue: ");
+            for (int i = 0; i < size; i++) {
+                System.out.print(arr[(front + i) % capacity] + (i == size-1 ? "" : " "));
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        CircularQueueSimple q = new CircularQueueSimple(5);
+        q.enqueue(10);
+        q.enqueue(20);
+        q.enqueue(30);
+        q.display();       // Queue: 10 20 30
+        q.dequeue();       // Removed: 10
+        q.display();       // Queue: 20 30
+        q.enqueue(40);
+        q.enqueue(50);
+        q.enqueue(60);     // fills queue
+        q.display();       // Queue: 20 30 40 50 60
+    }
+}
