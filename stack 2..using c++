@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+int stackArr[5];
+int top = -1;
+
+void push(int x) {
+    if (top < 4) {
+        stackArr[++top] = x;
+        cout << x << " pushed" << endl;
+    } else {
+        cout << "Stack is full" << endl;
+    }
+}
+
+void pop() {
+    if (top == -1) {
+        cout << "Stack is empty" << endl;
+    } else {
+        cout << stackArr[top--] << " popped" << endl;
+    }
+}
+
+int main() {
+    push(5);
+    push(10);
+    push(15);
+    pop();
+    pop();
+    pop();
+    pop(); // shows empty
+    return 0;
+}
