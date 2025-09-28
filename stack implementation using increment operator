@@ -1,0 +1,40 @@
+
+// A simple stack program using an array in Java
+
+public class MySimpleStack {              
+    static int[] stack = new int[5];                 // Array decl. of size = 5 
+    static int top = -1;              // Initially -1, meaning stack is emp
+   
+static void push(int x) {           // Adds an element to the stack (push )
+if (top < stack.length - 1) {           // Check if stack has space
+ stack[++top] = x;                  // increment top, then add element
+ System.out.println(x + " pushed");
+        } else {
+  System.out.println("Stack is full");      // overflow
+        }
+    }
+
+
+    static void pop() {             // Removes the top element from the stack(remove)
+     if (top == -1) {
+            System.out.println("Stack is empty");
+        } else {
+            // Print and remove top element, then decrease top
+            System.out.println(stack[top--] + " popped");
+        }
+    }
+
+    // ------------------ MAIN METHOD ---------------------
+    public static void main(String[] args) {
+        // Push some elements
+        push(5);   // insert = [5]
+        push(10);  // insert = [5, 10]
+        push(15);  // insert = [5, 10, 15]
+
+        // Pop elements (works in LIFO order)
+        pop();     // removes 15
+        pop();     // removes 10
+        pop();     // removes 5
+        pop();     // stack empty → message shown
+    }
+}
